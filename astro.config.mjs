@@ -7,7 +7,7 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://gamobox.github.io',
-  base: '/dist',
-  integrations: [tailwind(), react()]
+    site: 'https://gamobox.github.io',
+    base: '/',
+    integrations: [tailwind(), react()]
 });

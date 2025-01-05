@@ -9,7 +9,6 @@ const { url, title, image, description, pubDate } = Astro.props
       image && (
         <img
           class="aspect-[3/1] w-full rounded-lg object-cover bg-transparent-pattern lg:aspect-[16/9]"
-          loading="lazy"
           decoding="async"
           src={image.url}
           alt={image.alt}

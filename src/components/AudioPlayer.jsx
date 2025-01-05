@@ -82,7 +82,7 @@ export default ({ mp3, cover, title, ...props }) => {
                   type="button"
                   className="flex size-12 items-center justify-center rounded-sm border border-zinc-500 outline-offset-2"
                   onClick={pause}
-                  arial-label="Pause"
+                  aria-label="Pause"
                 >
                   <MdPause size="28" />
                 </button>
@@ -91,7 +91,7 @@ export default ({ mp3, cover, title, ...props }) => {
                   type="button"
                   className="flex size-12 items-center justify-center rounded-sm border border-zinc-500 outline-offset-2"
                   onClick={play}
-                  arial-label="Play"
+                  aria-label="Play"
                 >
                   <MdPlayArrow size="28" />
                 </button>

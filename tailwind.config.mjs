@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {},
     fontFamily: {
-      sans: ['Maison Neue', 'Noto Sans JP', 'sans-serif'],
+      sans: ['Maison Neue', 'Noto Sans JP', 'sans-serif']
     },
     container: {
       padding: '1.5rem',
@@ -20,11 +20,11 @@ export default {
           '@screen xl': { maxWidth: '1024px' },
           '@screen 2xl': { maxWidth: '1024px' }
         },
-        '.no-prose img': { 
+        '.no-prose img': {
           margin: '0',
           padding: '0',
-          borderRadius: '0',
-         },
+          borderRadius: '0'
+        }
       }),
         addUtilities({
           '.bg-transparent-pattern': {

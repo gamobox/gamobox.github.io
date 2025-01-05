@@ -9,7 +9,7 @@ import { formatDate } from '../helpers/date_helper'
 const { frontmatter } = Astro.props
 ---
 
-<Layout pageTitle={frontmatter.title}>
+<Layout pageTitle={frontmatter.title} description={frontmatter.description}>
   <article>
     <header class="mb-4 space-y-4">
       <time class="block" datetime={frontmatter.pubDate}>{formatDate(frontmatter.pubDate)}</time>
@@ -32,11 +32,13 @@ const { frontmatter } = Astro.props
 
     {
       frontmatter.image && (
-        <img
-          class="mb-4 mt-8 block aspect-[16/9] w-full rounded-lg object-cover"
-          src={frontmatter.image.url}
-          alt={frontmatter.image.alt}
-        />
+        <a href={frontmatter.image.url}>
+          <img
+            class="my-8 block aspect-[16/9] w-full rounded-lg object-contain"
+            src={frontmatter.image.url}
+            alt={frontmatter.image.alt}
+          />
+        </a>
       )
     }
 

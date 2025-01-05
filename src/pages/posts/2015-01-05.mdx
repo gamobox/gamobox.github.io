@@ -1,0 +1,12 @@
+---
+layout: '../../layouts/Post.astro'
+title: 'Rewalk'
+image:
+  url: '../../cover/rewalk.jpg'
+  alt: 'Rewalk'
+pubDate: 2025-01-05
+---
+
+import AudioPlayer from '../../components/AudioPlayer.jsx'
+
+<AudioPlayer mp3="/mp3/rewalk.mp3" cover="/cover/rewalk.jpg" title="Rewalk" client:only="react" />

@@ -1,11 +1,28 @@
 ---
-import Welcome from '../components/Welcome.astro'
 import Layout from '../layouts/Layout.astro'
-
+import HeadLine from '../components/HeadLine.astro'
+import { allPosts } from '../helpers/blog_helper'
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-  <Welcome />
+  <div class="space-y-16">
+    <section class="space-y-4">
+      <h2 class="text-xl leading-relaxed">Recent Entry</h2>
+      <div class="grid gap-x-8 gap-y-16 lg:grid-cols-2">
+        {
+          (allPosts as any[]).map((post) => (
+            <HeadLine
+              url={post.url}
+              title={post.frontmatter.title}
+              image={post.frontmatter.image}
+              description={post.frontmatter.description}
+              pubDate={post.frontmatter.pubDate}
+            />
+          ))
+        }
+      </div>
+    </section>
+  </div>
 </Layout>

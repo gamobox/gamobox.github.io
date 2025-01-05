@@ -1,0 +1,37 @@
+---
+import { SlArrowLeft, SlArrowRight } from 'react-icons/sl'
+import { allPosts } from '../helpers/blog_helper'
+
+const posts = allPosts.sort((a: any, b: any) => {
+  const _b = Number(new Date(b?.frontmatter?.pubDate ?? ''))
+  const _a = Number(new Date(a?.frontmatter?.pubDate ?? ''))
+  return _b - _a
+})
+
+const currentPostIndex = posts.findIndex((post: any) => post.url === Astro.routePattern)
+const previousPost: any = currentPostIndex + 1 === posts.length ? undefined : posts[currentPostIndex + 1]
+const nextPost: any = currentPostIndex === 0 ? undefined : posts[currentPostIndex - 1]
+---
+
+{
+  (previousPost || nextPost) && (
+    <nav class="grid grid-cols-2 items-center gap-8 text-sm">
+      {previousPost ? (
+        <a class="flex h-16 items-center justify-start gap-2" href={previousPost.url}>
+          <SlArrowLeft />
+          <span class="relative top-[2px]">{previousPost.frontmatter.title}</span>
+        </a>
+      ) : (
+        <SlArrowLeft className="opacity-50 justify-self-start" />
+      )}
+      {nextPost ? (
+        <a class="flex h-16 items-center justify-end gap-2" href={nextPost.url}>
+          <span class="relative top-[2px]">{nextPost.frontmatter.title}</span>
+          <SlArrowRight />
+        </a>
+      ) : (
+        <SlArrowRight className="opacity-50 justify-self-end" />
+      )}
+    </nav>
+  )
+}

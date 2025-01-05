@@ -1,0 +1,51 @@
+---
+import { SlTag } from 'react-icons/sl'
+
+import Layout from './Layout.astro'
+import Prose from '../components/Prose.astro'
+import BlogPostNavPrevNext from '../components/BlogPostNavPrevNext.astro'
+import { formatDate } from '../helpers/date_helper'
+
+const { frontmatter } = Astro.props
+---
+
+<Layout pageTitle={frontmatter.title}>
+  <article>
+    <header class="mb-4 space-y-4">
+      <time class="block" datetime={frontmatter.pubDate}>{formatDate(frontmatter.pubDate)}</time>
+      <h1 class="text-3xl font-bold">{frontmatter.title}</h1>
+      {
+        frontmatter.tags && (
+          <div class="flex items-center">
+            <SlTag />
+            <ul class="ml-1 flex gap-1">
+              {(frontmatter.tags as string[]).map((tag) => (
+                <a class="block rounded p-1 leading-none hover:underline" href={`/tags/${tag}`}>
+                  {tag}
+                </a>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+    </header>
+
+    {
+      frontmatter.image && (
+        <img
+          class="mb-4 mt-8 block aspect-[16/9] w-full rounded-lg object-cover"
+          src={frontmatter.image.url}
+          alt={frontmatter.image.alt}
+        />
+      )
+    }
+
+    <Prose>
+      <slot />
+    </Prose>
+
+    <footer class="mt-36">
+      <BlogPostNavPrevNext />
+    </footer>
+  </article>
+</Layout>

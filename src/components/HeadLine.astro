@@ -1,0 +1,28 @@
+---
+import { formatDate } from '../helpers/date_helper'
+const { url, title, image, description, pubDate } = Astro.props
+---
+
+<article>
+  <a href={url} class="group grid grid-rows-subgrid gap-2">
+    {
+      image && (
+        <img
+          class="aspect-[3/1] w-full rounded-lg object-cover bg-transparent-pattern lg:aspect-[16/9]"
+          loading="lazy"
+          decoding="async"
+          src={image.url}
+          alt={image.alt}
+          width="300"
+        />
+      )
+    }
+    <div>
+      <h2 class="group-hover:underline">
+        {title}
+      </h2>
+      {description && <p class="text-sm">{description}</p>}
+      <time class="text-xs text-zinc-600 dark:text-zinc-400" datetime={pubDate}>{formatDate(pubDate)}</time>
+    </div>
+  </a>
+</article>

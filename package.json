@@ -10,12 +10,12 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.0.3",
-    "@astrojs/react": "^4.1.2",
-    "@astrojs/tailwind": "^5.1.4",
+    "@astrojs/mdx": "^4.0.7",
+    "@astrojs/react": "^4.2.0",
+    "@astrojs/tailwind": "^5.1.5",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
-    "astro": "^5.1.2",
+    "astro": "^5.1.10",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

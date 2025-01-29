@@ -2,7 +2,10 @@
 import Header from '../components/Header.astro'
 import Aside from '../components/Aside.astro'
 
-const { pageTitle } = Astro.props
+const fm = Astro.props.frontmatter ?? {};
+const title = fm.title ? `${fm.title} - Nymoréa` : 'Nymoréa'
+const url = new URL(fm.url, 'https://nymorea.com').href
+const image = fm.image?.url ? new URL(fm.image.url, 'https://nymorea.com').href : undefined
 ---
 
 <!doctype html>
@@ -12,7 +15,15 @@ const { pageTitle } = Astro.props
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle ? `${pageTitle} - Nymoréa` : 'Nymoréa'}</title>
+    <title>{title}</title>
+    <meta property="og:title" content={title} />
+    <meta property="og:url" content={url} />
+    <meta property="og:type" content={fm ? 'article' : 'website'} />
+    <meta property="og:site_name" content="Nymoréa" />
+    <meta property="og:locale" content="ja_JP" />
+    {image && <meta property="og:image" content={image} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@nymoreax" />
     <meta name="description" content="Nymoréa Website" />
     <meta name="author" content="Nymoréa" />
     <link rel="stylesheet" href="/css/index.css" />

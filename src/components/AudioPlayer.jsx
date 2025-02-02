@@ -10,6 +10,7 @@ export default ({ mp3, cover, title, ...props }) => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [time, setTime] = useState(0)
   const [duration, setDuration] = useState(0)
+  const [isLoaded, setIsLoad] = useState(false)
 
   function formatTime(seconds) {
     const roundedSeconds = Math.round(seconds)
@@ -46,6 +47,7 @@ export default ({ mp3, cover, title, ...props }) => {
     ws.on('ready', () => {
       setDuration(ws.getDuration())
       setAudio(ws)
+      setIsLoad(true)
     })
     ws.on('timeupdate', () => {
       setTime(ws.getCurrentTime())
@@ -59,8 +61,10 @@ export default ({ mp3, cover, title, ...props }) => {
   }, [])
 
   function play() {
-    setIsPlaying(true)
-    audio?.play()
+    if (isLoaded) {
+      setIsPlaying(true)
+      audio?.play()
+    }
   }
 
   function pause() {
@@ -76,27 +80,29 @@ export default ({ mp3, cover, title, ...props }) => {
           <div className="mb-2 text-lg font-bold">{title}</div>
 
           <div className="flex gap-2">
-            <div>
-              {isPlaying ? (
-                <button
-                  type="button"
-                  className="flex size-12 items-center justify-center rounded-sm border border-zinc-500 outline-offset-2"
-                  onClick={pause}
-                  aria-label="Pause"
-                >
-                  <MdPause size="28" />
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  className="flex size-12 items-center justify-center rounded-sm border border-zinc-500 outline-offset-2"
-                  onClick={play}
-                  aria-label="Play"
-                >
-                  <MdPlayArrow size="28" />
-                </button>
-              )}
-            </div>
+            {isLoaded ? (
+              <div>
+                {isPlaying ? (
+                  <button
+                    type="button"
+                    className="flex size-12 items-center justify-center rounded-sm border border-zinc-500 outline-offset-2"
+                    onClick={pause}
+                    aria-label="Pause"
+                  >
+                    <MdPause size="28" />
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="flex size-12 items-center justify-center rounded-sm border border-zinc-500 outline-offset-2"
+                    onClick={play}
+                    aria-label="Play"
+                  >
+                    <MdPlayArrow size="28" />
+                  </button>
+                )}
+              </div>
+            ) : (<span>Loading...</span>)}
             <div className="flex-1">
               <div id={id} />
               <div className="text-right text-xs tracking-tight text-zinc-400">

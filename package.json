@@ -7,7 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.7",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
+    "husky": "^9.1.7",
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1"
   }

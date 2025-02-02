@@ -2,7 +2,7 @@
 import Header from '../components/Header.astro'
 import Aside from '../components/Aside.astro'
 
-const fm = Astro.props.frontmatter ?? {};
+const fm = Astro.props.frontmatter ?? {}
 const title = fm.title ? `${fm.title} - Nymoréa` : 'Nymoréa'
 const url = new URL(fm.url, 'https://nymorea.com').href
 const image = fm.image?.url ? new URL(fm.image.url, 'https://nymorea.com').href : undefined

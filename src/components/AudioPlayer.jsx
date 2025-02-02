@@ -102,7 +102,9 @@ export default ({ mp3, cover, title, ...props }) => {
                   </button>
                 )}
               </div>
-            ) : (<span>Loading...</span>)}
+            ) : (
+              <span>Loading...</span>
+            )}
             <div className="flex-1">
               <div id={id} />
               <div className="text-right text-xs tracking-tight text-zinc-400">
